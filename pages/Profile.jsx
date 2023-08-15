@@ -1,38 +1,115 @@
-import React, { useState } from "react";
-import { View, Text, TextInput, Switch, StyleSheet } from "react-native";
+import React, { useReducer } from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  Switch,
+  StyleSheet,
+  Button,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
+
+const initialState = {
+  name: "",
+  age: "",
+  isEnable: false,
+  nameError: "",
+  ageError: "",
+};
+
+const formReducer = (state, action) => {
+  switch (action.type) {
+    case "SET_NAME":
+      return { ...state, name: action.payload, nameError: "" };
+    case "SET_AGE":
+      return { ...state, age: action.payload, ageError: "" };
+    case "SET_IS_ENABLE":
+      return { ...state, isEnable: action.payload };
+    case "SET_NAME_ERROR":
+      return { ...state, nameError: action.payload };
+    case "SET_AGE_ERROR":
+      return { ...state, ageError: action.payload };
+    default:
+      return state;
+  }
+};
 
 const Profile = () => {
-  const [name, setName] = useState("");
-  const [age, setAge] = useState("");
-  const [isEnable, setIsEnable] = useState(false);
+  const [state, dispatch] = useReducer(formReducer, initialState);
+
+  const handleNameChange = (text) => {
+    dispatch({ type: "SET_NAME", payload: text });
+  };
+
+  const handleAgeChange = (text) => {
+    dispatch({ type: "SET_AGE", payload: text });
+  };
+
+  const handleSwitchChange = () => {
+    dispatch({ type: "SET_IS_ENABLE", payload: !state.isEnable });
+  };
+
+  const handleSubmit = () => {
+    if (!state.name) {
+      dispatch({ type: "SET_NAME_ERROR", payload: "نام الزامی است" });
+      return;
+    }
+
+    if (!state.age) {
+      dispatch({ type: "SET_AGE_ERROR", payload: "سن الزامی است" });
+      return;
+    }
+
+    // Form validation successful, proceed with your logic here
+
+    // For demonstration purposes, you can log the form data
+    console.log("Name:", state.name);
+    console.log("Age:", state.age);
+    console.log("IsEnable:", state.isEnable);
+  };
+
+  const handleFormPress = () => {
+    // Dismiss the keyboard when the form is pressed
+    Keyboard.dismiss();
+  };
+
   return (
-    <View style={styles.container}>
-      <View style={styles.form}>
-        <TextInput
-          style={styles.textinput}
-          onChangeText={(text) => setName(text)}
-          value={name}
-          placeholder="نام"
-        />
-        <TextInput
-          style={styles.textinput}
-          onChangeText={(text) => setAge(text)}
-          value={age}
-          placeholder="سن"
-          keyboardType="numeric"
-        />
-        <View style={styles.switch}>
-          <Switch
-            trackColor={{ false: "#767577", true: "#81b0ff" }}
-            // thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
-            ios_backgroundColor="#3e3e3e"
-            onValueChange={() => setIsEnable((pre) => !pre)}
-            value={isEnable}
+    <TouchableWithoutFeedback onPress={handleFormPress}>
+      <View style={styles.container}>
+        <View style={styles.form}>
+          <TextInput
+            style={styles.textinput}
+            onChangeText={handleNameChange}
+            value={state.name}
+            placeholder="نام"
           />
-          <Text>سرپرست</Text>
+          {state.nameError ? (
+            <Text style={styles.error}>{state.nameError}</Text>
+          ) : null}
+          <TextInput
+            style={styles.textinput}
+            onChangeText={handleAgeChange}
+            value={state.age}
+            placeholder="سن"
+            keyboardType="numeric"
+          />
+          {state.ageError ? (
+            <Text style={styles.error}>{state.ageError}</Text>
+          ) : null}
+          <View style={styles.switch}>
+            <Switch
+              trackColor={{ false: "#767577", true: "#81b0ff" }}
+              ios_backgroundColor="#3e3e3e"
+              onValueChange={handleSwitchChange}
+              value={state.isEnable}
+            />
+            <Text>سرپرست</Text>
+          </View>
+          <Button title="ثبت" onPress={handleSubmit} />
         </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 
@@ -62,5 +139,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     direction: "rtl",
+  },
+  error: {
+    color: "red",
+    textAlign: "center",
   },
 });

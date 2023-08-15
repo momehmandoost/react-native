@@ -1,18 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button, Alert } from 'react-native';
-import { useState } from "react";
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import Dashboard from "./pages/Dashboard";
+import Hospitals from "./pages/Hospitals";
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const [text, setText] = useState("welcome to the app")
+
   return (
-    <View style={styles.container}>
-      <Text>{text}</Text>
-      <Button
-        title="Press me"
-        onPress={() => Alert.alert('Simple Button pressed')}
-      />
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Dashboard" component={Dashboard} />
+        <Stack.Screen name="Hospitals" component={Hospitals} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 

@@ -44,15 +44,15 @@ const Dashboard = ({ navigation }) => {
         <View style={styles.item}>
           <TouchableOpacity
             style={[styles.touchable, { backgroundColor: "pink" }]}
-            onPress={() => navigation.navigate("Hospitals")}
+            onPress={() => navigation.navigate("Profile")}
           >
-            <Text>hi</Text>
+            <Text>پروفایل</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.item}>
           <TouchableOpacity
             style={[styles.touchable, { backgroundColor: "purple" }]}
-            onPress={() => navigation.navigate("Hospitals")}
+            onPress={() => navigation.navigate("Profile")}
           >
             <Text>hi</Text>
           </TouchableOpacity>

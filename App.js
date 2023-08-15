@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Dashboard from "./pages/Dashboard";
 import Hospitals from "./pages/Hospitals";
 import HospitalDetails from './pages/HospitalDetails';
+import Profile from './pages/Profile';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,6 +18,7 @@ export default function App() {
         <Stack.Screen name="Dashboard" component={Dashboard} options={{ headerTitle: "داشبورد" }} />
         <Stack.Screen name="Hospitals" component={Hospitals} />
         <Stack.Screen name="HospitalDetails" component={HospitalDetails} />
+        <Stack.Screen name="Profile" component={Profile} />
 
 
       </Stack.Navigator>

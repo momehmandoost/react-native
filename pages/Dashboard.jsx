@@ -10,7 +10,7 @@ const Dashboard = ({ navigation }) => {
             style={[styles.touchable, { backgroundColor: "green" }]}
             onPress={() => navigation.navigate("Hospitals")}
           >
-            <Text>hi</Text>
+            <Text>بیمارستان ها</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.item}>
@@ -18,7 +18,7 @@ const Dashboard = ({ navigation }) => {
             style={[styles.touchable, { backgroundColor: "red" }]}
             onPress={() => navigation.navigate("Hospitals")}
           >
-            <Text>hi</Text>
+            <Text>فرم سنجش</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -28,7 +28,7 @@ const Dashboard = ({ navigation }) => {
             style={[styles.touchable, { backgroundColor: "blue" }]}
             onPress={() => navigation.navigate("Hospitals")}
           >
-            <Text>hi</Text>
+            <Text>داروخانه ها</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.item}>
@@ -36,7 +36,7 @@ const Dashboard = ({ navigation }) => {
             style={[styles.touchable, { backgroundColor: "yellow" }]}
             onPress={() => navigation.navigate("Hospitals")}
           >
-            <Text>hi</Text>
+            <Text>اخبار</Text>
           </TouchableOpacity>
         </View>
       </View>

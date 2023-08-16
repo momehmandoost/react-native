@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, Button, StyleSheet, TouchableOpacity } from "react-native";
+import { CustomText } from "../components/CustomText";
 
 const Dashboard = ({ navigation }) => {
   return (
@@ -10,7 +11,7 @@ const Dashboard = ({ navigation }) => {
             style={[styles.touchable, { backgroundColor: "green" }]}
             onPress={() => navigation.navigate("Hospitals")}
           >
-            <Text>بیمارستان ها</Text>
+            <Text style={{ fontFamily: "Iransans" }}>بیمارستان ها</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.item}>
@@ -18,7 +19,7 @@ const Dashboard = ({ navigation }) => {
             style={[styles.touchable, { backgroundColor: "red" }]}
             onPress={() => navigation.navigate("Hospitals")}
           >
-            <Text>فرم سنجش</Text>
+            <Text style={{ fontFamily: "Iransans" }}>فرم سنجش</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -28,7 +29,7 @@ const Dashboard = ({ navigation }) => {
             style={[styles.touchable, { backgroundColor: "blue" }]}
             onPress={() => navigation.navigate("Hospitals")}
           >
-            <Text>داروخانه ها</Text>
+            <CustomText>داروخانه ها</CustomText>
           </TouchableOpacity>
         </View>
         <View style={styles.item}>

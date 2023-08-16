@@ -8,7 +8,12 @@ import {
   Button,
   TouchableWithoutFeedback,
   Keyboard,
+  Alert,
 } from "react-native";
+
+
+
+import { Card } from "./Card";
 
 const initialState = {
   name: "",
@@ -43,7 +48,7 @@ const Profile = () => {
   };
 
   const handleAgeChange = (text) => {
-    dispatch({ type: "SET_AGE", payload: text });
+    dispatch({ type: "SET_AGE", payload: text, ageError: "" });
   };
 
   const handleSwitchChange = () => {
@@ -58,6 +63,17 @@ const Profile = () => {
 
     if (!state.age) {
       dispatch({ type: "SET_AGE_ERROR", payload: "سن الزامی است" });
+      return;
+    }
+
+    if (!state.name || !state.age) {
+      Alert.alert("اطلاعات فرم را تکمیل کنید", [
+        {
+          text: "تایید",
+          onPress: () => console.log("Form is not complete"), // Handle incomplete form submission
+          style: "destructive",
+        },
+      ]);
       return;
     }
 
@@ -77,7 +93,7 @@ const Profile = () => {
   return (
     <TouchableWithoutFeedback onPress={handleFormPress}>
       <View style={styles.container}>
-        <View style={styles.form}>
+        <Card style={styles.form}>
           <TextInput
             style={styles.textinput}
             onChangeText={handleNameChange}
@@ -107,7 +123,7 @@ const Profile = () => {
             <Text>سرپرست</Text>
           </View>
           <Button title="ثبت" onPress={handleSubmit} />
-        </View>
+        </Card>
       </View>
     </TouchableWithoutFeedback>
   );
@@ -123,10 +139,6 @@ const styles = StyleSheet.create({
   },
   form: {
     width: "80%",
-    alignItems: "stretch",
-    backgroundColor: "gray",
-    padding: 20,
-    borderRadius: 10,
   },
   textinput: {
     backgroundColor: "white",

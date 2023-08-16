@@ -1,3 +1,4 @@
+import React, { useCallback } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button, Alert } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -8,19 +9,26 @@ import Hospitals from "./pages/Hospitals";
 import HospitalDetails from './pages/HospitalDetails';
 import Profile from './pages/Profile';
 
-const Stack = createNativeStackNavigator();
+import { useFonts } from 'expo-font';
 
 export default function App() {
+  const [loaded] = useFonts({
+    Iransans: require('./assets/fonts/Iransans.ttf'),
+  });
+
+  if (!loaded) {
+    return null;
+  }
+
+  const Stack = createNativeStackNavigator();
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator >
         <Stack.Screen name="Dashboard" component={Dashboard} options={{ headerTitle: "داشبورد" }} />
         <Stack.Screen name="Hospitals" component={Hospitals} />
         <Stack.Screen name="HospitalDetails" component={HospitalDetails} />
         <Stack.Screen name="Profile" component={Profile} />
-
-
       </Stack.Navigator>
     </NavigationContainer>
   );

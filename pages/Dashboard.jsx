@@ -1,6 +1,14 @@
 import React from "react";
-import { View, Text, Button, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Button,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+} from "react-native";
 import { CustomText } from "../components/CustomText";
+import { Entypo } from "@expo/vector-icons";
 
 const Dashboard = ({ navigation }) => {
   return (
@@ -11,6 +19,23 @@ const Dashboard = ({ navigation }) => {
             style={[styles.touchable, { backgroundColor: "green" }]}
             onPress={() => navigation.navigate("Hospitals")}
           >
+            <View
+              style={{
+                borderRadius: 50,
+                backgroundColor: "white",
+                width: 50,
+                height: 50,
+                overflow: "hidden",
+                borderWidth: 1,
+                borderColor: "black",
+              }}
+            >
+              <Image
+                source={require("../assets/hospital.png")}
+                style={{ width: 50, height: 50, resizeMode: "contain" }}
+                resizeMode="cover"
+              />
+            </View>
             <Text style={{ fontFamily: "Iransans" }}>بیمارستان ها</Text>
           </TouchableOpacity>
         </View>
@@ -19,6 +44,25 @@ const Dashboard = ({ navigation }) => {
             style={[styles.touchable, { backgroundColor: "red" }]}
             onPress={() => navigation.navigate("Hospitals")}
           >
+            <View
+              style={{
+                borderRadius: 50,
+                backgroundColor: "white",
+                width: 50,
+                height: 50,
+                overflow: "hidden",
+                borderWidth: 1,
+                borderColor: "black",
+              }}
+            >
+              <Image
+                source={{
+                  uri: "https://cdn-icons-png.flaticon.com/512/4320/4320337.png",
+                }}
+                style={{ width: 50, height: 50, resizeMode: "contain" }}
+                resizeMode="cover"
+              />
+            </View>
             <Text style={{ fontFamily: "Iransans" }}>فرم سنجش</Text>
           </TouchableOpacity>
         </View>
@@ -29,6 +73,7 @@ const Dashboard = ({ navigation }) => {
             style={[styles.touchable, { backgroundColor: "blue" }]}
             onPress={() => navigation.navigate("Hospitals")}
           >
+            <Entypo name="news" size={50} color="black" />
             <CustomText>داروخانه ها</CustomText>
           </TouchableOpacity>
         </View>
